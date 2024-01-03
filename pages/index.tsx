@@ -13,7 +13,7 @@ import { ErrorPage } from '@/components/ErrorPage';
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const data = await getInfo();
-
+    console.log(data)
     return {
       props: {
         data,
@@ -59,8 +59,9 @@ const Home: NextPage<IProps> = ({ data: initialData }) => {
             {data.name ? formatRichText(data.name) : 'Hello 👋'}
           </h1>
           <p className="my-1 text-sm text-gray-700">{formatRichText(data.headline)}</p>
+          <p className="mt-4 mb-0 text-base text-gray-900"><b>{formatRichText(data.salutation)}</b></p>
           {data.description && (
-            <p className="my-4 text-base text-gray-900">
+            <p className="mt-0 mb-4 text-base text-gray-900 text-justify">
               {formatRichText(data.description)}
             </p>
           )}
