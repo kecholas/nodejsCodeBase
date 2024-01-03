@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-export default function Seo({
+export function Seo({
   description = 'Hi my name is David Igbigbi',
   author = 'David Igbigbi',
   meta = [],
