@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import cn from 'classnames';
-import SEO from './seo';
+import Seo from './seo';
 
 interface IProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   title?: string;
@@ -18,7 +18,7 @@ export function Page({
 }: IProps) {
   return (
     <>
-      <SEO/>
+      <Seo/>
       <div className={cn('min-h-full selection:bg-gray-800 selection:text-white', className)} {...props}>
         {children}
       </div>

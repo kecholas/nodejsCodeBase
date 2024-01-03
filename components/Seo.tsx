@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-export default function SEO({
+export default function Seo({
   description = 'Hi my name is David Igbigbi',
   author = 'David Igbigbi',
   meta = [],
@@ -51,7 +51,7 @@ export default function SEO({
   );
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   meta: [],
 };
