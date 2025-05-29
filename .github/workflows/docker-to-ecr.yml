@@ -1,0 +1,36 @@
+name: Build and Push to ECR Public
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Amazon ECR Public
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry-type: public
+
+      - name: Set image tag
+        id: vars
+        run: echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG .
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
