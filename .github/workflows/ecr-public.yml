@@ -27,5 +27,5 @@ jobs:
 
     - name: Build and Push to Public ECR
       run: |
-       docker build -t public.ecr.aws/${{ secrets.AWS_ECR_ALIAS }}/nodejsapp:latest 
+       docker build -t public.ecr.aws/${{ secrets.AWS_ECR_ALIAS }}/nodejsapp:latest . 
        docker push public.ecr.aws/${{ secrets.AWS_ECR_ALIAS }}/nodejsapp:latest
